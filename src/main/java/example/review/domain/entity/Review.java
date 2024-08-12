@@ -1,7 +1,7 @@
 package example.review.domain.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,6 +12,9 @@ import static jakarta.persistence.FetchType.*;
 @Entity
 @Getter
 @Table(name = "reviews")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Review {
 
     @Id
@@ -25,7 +28,6 @@ public class Review {
 
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
     private List<ReviewBook> reviewBooks = new ArrayList<>();
-
 
 
     private LocalDate reviewDate;

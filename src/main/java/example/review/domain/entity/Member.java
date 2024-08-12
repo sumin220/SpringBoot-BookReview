@@ -21,6 +21,6 @@ public class Member {
     private String name;
 
     @OneToMany(mappedBy = "member")
-    private List<Review> reviews = new ArrayList<>();
+    private final List<Review> reviews = new ArrayList<>();
 
 }

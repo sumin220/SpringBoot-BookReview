@@ -1,9 +1,9 @@
 package example.review.domain.service;
 
+import example.review.domain.dto.MemberRequest;
 import example.review.domain.entity.Member;
 import example.review.domain.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +20,9 @@ public class MemberService {
      * 회원 등록
      */
     @Transactional
-    public Long join(Member member) {
+    public Long join(MemberRequest memberRequest) {
+
+        Member member = memberRequest.toEntity();
 
         validateDuplicateMember(member); //중복 회원 검증
         memberRepository.save(member);

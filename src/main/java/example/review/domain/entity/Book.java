@@ -1,13 +1,16 @@
 package example.review.domain.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Book {
 
     @Id
@@ -16,7 +19,7 @@ public class Book {
     private Long id;
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
-    private List<ReviewBook> reviews = new ArrayList<>();
+    private final List<ReviewBook> reviews = new ArrayList<>();
 
     private String title; // name
 
