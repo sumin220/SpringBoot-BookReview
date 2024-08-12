@@ -1,0 +1,17 @@
+package example.review.domain.dto;
+
+import example.review.domain.entity.Member;
+import jakarta.validation.constraints.NotNull;
+
+
+public record MemberRequest (
+
+        @NotNull
+        String name
+){
+    public Member toEntity() {
+        return Member.builder()
+                .name(name)
+                .build();
+    }
+}
