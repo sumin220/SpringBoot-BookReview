@@ -1,32 +1,45 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: header" />
+<head>
+    <title>리뷰 목록</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
 <body>
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
     <div>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>책이름</th>
-                <th>가격</th>
-                <th>저자</th>
-                <th>isbn</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="review : ${reviews}">
-                <td th:text="${review.id}"></td>
-                <td th:text="${review.title}"></td>
-                <td th:text="${review.price}"></td>
-                <td th:text="${review.author}"></td>
-                <td th:text="${review.isbn}"></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+    <h1>리뷰 목록</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>리뷰 ID</th>
+            <th>회원</th>
+            <th>도서명</th>
+            <th>리뷰 제목</th>
+            <th>리뷰 내용</th>
+            <th>작성일</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="review : ${reviews}">
+            <td th:text="${review.id}"></td>
+            <td th:text="${review.member.name}"></td>
+            <td>
+                <ul>
+                    <li th:each="reviewBook : ${review.reviewBooks}"
+                        th:text="${reviewBook.book.title}"></li>
+                </ul>
+            </td>
+            <td th:text="${review.title}"></td>
+            <td th:text="${review.content}"></td>
+            <td th:text="${#temporals.format(review.reviewDate, 'yyyy-MM-dd')}"></td> <!-- 수정된 부분 -->
+        </tr>
+        </tbody>
+    </table>
+    <a href="/review/new" class="btn btn-primary">리뷰 작성하기</a>
     <div th:replace="fragments/footer :: footer"/>
-</div> <!-- /container -->
+    </div>
+</div>
 </body>
 </html>

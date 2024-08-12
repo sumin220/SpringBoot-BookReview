@@ -2,7 +2,7 @@ package example.review.domain.controller;
 
 import example.review.domain.entity.Book;
 import example.review.domain.entity.Member;
-import example.review.domain.repository.ReviewRepository;
+import example.review.domain.entity.Review;
 import example.review.domain.service.BookService;
 import example.review.domain.service.MemberService;
 import example.review.domain.service.ReviewService;
@@ -25,7 +25,7 @@ public class ReviewController {
     private final BookService bookService;
     private final MemberService memberService;
 
-    @GetMapping
+    @GetMapping("/new")
     public String createForm(Model model) {
 
         List<Member> members = memberService.findMembers();
@@ -37,11 +37,18 @@ public class ReviewController {
         return "review/reviewForm";
     }
 
-    @PostMapping
+    @PostMapping("/new")
     public String review(@RequestParam("memberId") Long memberId,
                          @RequestParam("bookId") Long bookId,
                          @RequestParam("content") String content) {
         reviewService.review(memberId, bookId, content);
-        return "redirect:/review";
+        return "redirect:/";
+    }
+
+    @GetMapping
+    public String list(Model model) {
+        List<Review> reviews = reviewService.findReviews();
+        model.addAttribute("reviews", reviews);
+        return "review/reviewList";
     }
 }
