@@ -27,7 +27,7 @@ public class Review {
     private Member member; //리뷰하는 회원
 
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
-    private List<ReviewBook> reviewBooks = new ArrayList<>();
+    private final List<ReviewBook> reviewBooks = new ArrayList<>();
 
     private String title;
 
