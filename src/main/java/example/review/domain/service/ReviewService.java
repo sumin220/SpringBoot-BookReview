@@ -26,7 +26,7 @@ public class ReviewService {
      * 리뷰
      */
     @Transactional
-    public Long review(Long memberId, Long bookId, String title, String author, String content) {
+    public Long review(Long memberId, Long bookId, String content) {
         // 엔티티 조회
         Member member = memberRepository.findOne(memberId);
         Book book = bookRepository.findOne(bookId);
@@ -34,8 +34,6 @@ public class ReviewService {
         // 리뷰 생성
         Review review = Review.builder()
                 .member(member) // 리뷰 작성자 설정
-                .title(title) // 제목 설정
-                .author(author) // 저자 설정
                 .content(content) // 내용 설정
                 .reviewDate(LocalDate.now()) // 현재 날짜로 리뷰 날짜 설정
                 .build();
