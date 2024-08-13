@@ -45,7 +45,7 @@ public class ReviewController {
         return "redirect:/";
     }
 
-    @GetMapping
+    @GetMapping//조회
     public String list(Model model) {
         List<Review> reviews = reviewService.findReviews();
         model.addAttribute("reviews", reviews);
