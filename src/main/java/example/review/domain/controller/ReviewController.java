@@ -37,7 +37,7 @@ public class ReviewController {
         return "review/reviewForm";
     }
 
-    @PostMapping("/new")
+    @PostMapping("/new")//리뷰생성
     public String review(@RequestParam("memberId") Long memberId,
                          @RequestParam("bookId") Long bookId,
                          @RequestParam("content") String content) {
