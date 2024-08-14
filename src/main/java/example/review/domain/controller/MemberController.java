@@ -5,6 +5,7 @@ import example.review.domain.entity.Member;
 import example.review.domain.service.MemberService;
 import example.review.domain.web.MemberForm;
 import jakarta.validation.Valid;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
