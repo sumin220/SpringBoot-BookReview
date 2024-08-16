@@ -9,7 +9,7 @@ public record BookRequest(
         String isbn,
         int price
 ) {
-    public Book toEntity() {
+    public Book toEntity() { //빌더타입
         return Book.builder()
                 .title(title)
                 .author(author)

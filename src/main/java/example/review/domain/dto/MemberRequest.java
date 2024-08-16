@@ -9,7 +9,7 @@ public record MemberRequest (
         @NotNull
         String name
 ){
-    public Member toEntity() {
+    public Member toEntity() { //빌더타입
         return Member.builder()
                 .name(name)
                 .build();

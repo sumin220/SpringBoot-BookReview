@@ -10,7 +10,7 @@ public record ReviewRequest(
         String author,
         LocalDate reviewDate
 ) {
-    public Review toEntity() {
+    public Review toEntity() { //빌더타입
         return Review.builder()
                 .title(title)
                 .author(author)
