@@ -9,7 +9,6 @@ public record ReviewRequest(
         String content,
         String author,
         LocalDate reviewDate
-
 ) {
     public Review toEntity() {
         return Review.builder()
